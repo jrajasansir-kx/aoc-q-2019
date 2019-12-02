@@ -1,10 +1,7 @@
 / Advent of Code - 2019 - Day 2
 
 / Part 1
-input:"I"$"," vs first read0 `$"input/day-2.data";
-opsLoc:where 0 = mod[;4] til count input;
-
-func:({[input; opLoc] 
+operate:({[input; opLoc] 
     if[not input[opLoc] in 1 2;
         :input;
     ]; 
@@ -13,21 +10,32 @@ func:({[input; opLoc]
     
     :input; 
  });
+
+.d2.p1:{
+    input:"I"$"," vs first read0 `$"input/day-2.data";
+    opsLoc:where 0 = mod[;4] til count input;
+
+    :operate/[input; opsLoc];
+ };
  
-res:func/[input; opsLoc];
-
 / Part 2
-runTest:{
-    validInputs:(cross). 2#enlist til 100;
+.d2.p2:{
+    input:"I"$"," vs first read0 `$"input/day-2.data";
 
-    {
-        tInput:@[input; 1 2; :; x];
+    nv:(cross). 2#enlist til 100;
+
+    res:{[origIn; nv]
+        tInput:@[origIn; 1 2; :; nv];
         tOpsLoc:where 0 = mod[;4] til count tInput;
 
-        tRes:func/[tInput; tOpsLoc];
+        tRes:operate/[tInput; tOpsLoc];
 
-        if[19690720 = tRes 0;
-            -1 "RESULT | Input: ",.Q.s1[x]," | Answer: ",string (100 * x 0) + x 1;
+        $[19690720 = tRes 0;
+            :nv;
+        / else
+            :();
         ];
-    } each validInputs
+    }[input;] each nv;
+
+    :first res where not ()~/:res;
  };

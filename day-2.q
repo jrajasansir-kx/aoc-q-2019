@@ -1,6 +1,7 @@
 / Advent of Code - 2019 - Day 2
 
-/ Part 1
+fileData:read0 `$"input/day-2.data";
+
 operate:({[input; opLoc] 
     if[not input[opLoc] in 1 2;
         :input;
@@ -11,8 +12,10 @@ operate:({[input; opLoc]
     :input; 
  });
 
+
+/ Part 1
 .d2.p1:{
-    input:"I"$"," vs first read0 `$"input/day-2.data";
+    input:"I"$"," vs first fileData;
     opsLoc:where 0 = mod[;4] til count input;
 
     :operate/[input; opsLoc];
@@ -20,7 +23,7 @@ operate:({[input; opLoc]
  
 / Part 2
 .d2.p2:{
-    input:"I"$"," vs first read0 `$"input/day-2.data";
+    input:"I"$"," vs first fileData;
 
     nv:(cross). 2#enlist til 100;
 

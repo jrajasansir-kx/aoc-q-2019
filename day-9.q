@@ -8,7 +8,7 @@ compOps:7 8!(<;=);
 
 .d9.p1:{
     input:"J"$"," vs first fileData;
-    input,:1000000#0;
+    input,:10000#0;
 
     opIndex:0;
     relativeBase:0;
@@ -70,3 +70,5 @@ compOps:7 8!(<;=);
     :input;
  };
 
+/ Part 2
+.d9.p2:.d9.p1;
